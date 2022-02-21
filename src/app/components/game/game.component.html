@@ -1,0 +1,4 @@
+<app-reponse [listOfcolor] ="listOfColor" [tentative]="colorTentative" [submitted]="submitted"></app-reponse>
+<app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="colorTentative= $event" (submitted)="submitted = $event"></app-grid-color>
+<app-grid></app-grid>
+

@@ -1,0 +1,31 @@
+<p>grid-color works!</p>
+<p>coucou
+</p>
+
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+        
+    <ng-container *ngFor="let colorChoice of listOfColorChoice; let index = index" >
+        <div class="squareInput">
+            
+        <input disabled type="button" class="dot" [ngStyle]="{'background-color':colorChoice}"  >
+        <input type="hidden" [value]="colorChoice" [formControlName]="'color'+(index+1)" >
+    </div>
+    </ng-container> 
+
+    <p></p>
+    
+
+
+    
+<button type="button" (click)="setTentative()">envoyer</button>
+
+
+</form>
+<ng-container *ngFor="let color of listOfColor; let index = index" >
+    <button  class="square"><span class="dot" [ngStyle]="{'background-color':color}" (click)="colorAdd(color)" ></span></button>
+    <br *ngIf=" index ==2 ">    
+
+</ng-container>
+<button (click)="colorReset()">reset</button>
