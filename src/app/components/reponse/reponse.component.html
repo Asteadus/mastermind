@@ -1,11 +1,7 @@
-
-
-<p>{{submitted}}</p>
-<p>{{win}}</p>
-
-<div *ngIf="submitted" >
-    <p>{{verifReponse()}}</p>
+<p *ngIf="win">
+    <ng-container *ngFor="let rep of reponse; let index = index" >
+        <button type="button" class="square"><span class="dot" [ngStyle]="{'background-color':rep}" ></span></button>
+          
     
-</div>
-
-<p *ngIf="win">VOUS AVEZ GAGNE</p>   
+    </ng-container>
+</p>

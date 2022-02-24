@@ -1,1 +1,16 @@
-<p>grid works!</p>
+
+<div >
+
+{{listTentative}}
+    <ng-container *ngFor="let tent of listTentative; let index = index" >
+    
+        
+        <button class="square" [ngStyle]="{'background-color':tent.bgColor1}"><span class="dot" [ngStyle]="{'background-color':tent.color1}"  ></span></button>
+        <button class="square" [ngStyle]="{'background-color':tent.bgColor2}"><span class="dot" [ngStyle]="{'background-color':tent.color2}"  ></span></button>
+        <button class="square" [ngStyle]="{'background-color':tent.bgColor3}"><span class="dot" [ngStyle]="{'background-color':tent.color3}"  ></span></button>
+        <button class="square" [ngStyle]="{'background-color':tent.bgColor4}"><span class="dot" [ngStyle]="{'background-color':tent.color4}"  ></span></button>
+        <br>
+    </ng-container>  
+</div>  
+
+

@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { RawColor } from 'src/app/models/raw-color';
 
 @Component({
   selector: 'app-grid-color',
@@ -13,8 +14,9 @@ export class GridColorComponent implements OnInit {
   @Output("color-tentative")
   emitter = new EventEmitter();
 
-  @Output("submitted")
-  submitted = new EventEmitter();
+
+  @Output("gridTentative")
+  gridTentative = new EventEmitter();
 
   listOfColorChoice: Array<string> = []
   i : number = 1;
@@ -26,16 +28,20 @@ export class GridColorComponent implements OnInit {
     "color4" : new FormControl (),
   });
 
-  constructor() { }
+  listTentative : RawColor[]=[]
+  
+
+  constructor(private cdref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
    
   }
   onSubmit(){
-    console.log(this.form.value)
+    this.emitter.emit(this.listOfColorChoice)
+    this.colorReset()
+    
   }
   colorAdd(color: string){
-    
     if(this.listOfColorChoice.length<4){
       this.listOfColorChoice.push(color)
       this.form.get("color"+this.i)?.setValue(color)
@@ -48,8 +54,7 @@ export class GridColorComponent implements OnInit {
     this.i=1
   }
   
-  setTentative(){
-    this.emitter.emit(this.listOfColorChoice)
-    this.submitted.emit(true)
-  }
+  
+
+  
 }

@@ -1,6 +1,5 @@
-<p>grid-color works!</p>
-<p>coucou
-</p>
+<h3>Palette de couleurs</h3>
+
 
 
 <div>
@@ -15,17 +14,19 @@
     </ng-container> 
 
     <p></p>
+    <ng-container *ngFor="let color of listOfColor; let index = index" >
+        <button type="button" class="square"><span class="dot" [ngStyle]="{'background-color':color}" (click)="colorAdd(color)" ></span></button>
+        <br *ngIf=" index ==2 ">    
     
+    </ng-container>
+    <br>
 
-
+ 
     
-<button type="button" (click)="setTentative()">envoyer</button>
+     <button type="submit">envoyer</button>
+     <button type="button" (click)="colorReset()">reset</button>
 
+    </form>
+    
+</div>
 
-</form>
-<ng-container *ngFor="let color of listOfColor; let index = index" >
-    <button  class="square"><span class="dot" [ngStyle]="{'background-color':color}" (click)="colorAdd(color)" ></span></button>
-    <br *ngIf=" index ==2 ">    
-
-</ng-container>
-<button (click)="colorReset()">reset</button>

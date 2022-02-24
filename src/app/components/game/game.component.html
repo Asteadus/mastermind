@@ -1,4 +1,8 @@
-<app-reponse [listOfcolor] ="listOfColor" [tentative]="colorTentative" [submitted]="submitted"></app-reponse>
-<app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="colorTentative= $event" (submitted)="submitted = $event"></app-grid-color>
-<app-grid></app-grid>
+<app-reponse [listOfcolor] ="listOfColor" [win]="win" (reponse)=" reponse = $event"  ></app-reponse>
+<app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="verification($event)"></app-grid-color>
+<app-grid [listTentative] ="listTentative"></app-grid>
+<p>{{reponse}}</p>
 
+
+
+<p *ngIf="win">Bravo</p>
