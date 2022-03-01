@@ -1,7 +1,7 @@
-
+<h1>Mastermind</h1>
 <div *ngIf="!start">
     <form [formGroup]="config" (ngSubmit)="onSubmit()">
-    <label for="nbTentative">nbTentative :</label>
+    <label for="nbTentative">Nombre de tentatives :</label>
         <input type="number" id="nbTentative" formControlName="nbTentative">
         <button type="submit">Commencer la partie</button>
     </form>
@@ -9,10 +9,12 @@
 
 <div *ngIf="start">
    
-<app-reponse [listOfcolor] ="listOfColor" [win]="win" (reponse)=" reponse = $event"  ></app-reponse>
+<app-reponse [listOfcolor] ="listOfColor" [win]="win" [life]="life"  (reponse)=" reponse = $event"  ></app-reponse>
+
 <div *ngIf="life">
     <app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="verification($event)"></app-grid-color>
 </div>
+<h4>Tentatives</h4>
 <app-grid [listTentative] ="listTentative"></app-grid>
 <p>{{reponse}}</p>
 

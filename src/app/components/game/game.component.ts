@@ -39,37 +39,43 @@ export class GameComponent implements OnInit {
   verification( colorTentative : Array<string>){
     
     for (let i = 0; i<4; i++){
-
       if (this.reponse[i] === colorTentative[i]){
         this.j=this.j+1
-        colorTentative.push("lightgreen")
-        
-      }else{
+        colorTentative.push("lightgreen") 
+      }
+      else{
+        colorTentative.push("")
+      }
+    }
+    for (let i = 0; i<4; i++){
+      if(colorTentative[i+4] != "lightgreen"){
         let accuNoColor =0
         for (let k = 0; k<4; k++){
           
-          if (this.reponse[k] === colorTentative[i] && colorTentative[k+4] == undefined){
+          if(  i != k && colorTentative[i] == this.reponse[k] && colorTentative[k+4] != "lightgreen" ){
 
-            console.log(console.log(colorTentative[5]))
-            colorTentative.push("orange")
+            console.log(console.log(colorTentative))
+            colorTentative.splice(i+4,1,"orange")
             
             break;
           }
           else{
             accuNoColor++
             if(accuNoColor == 4){
-              colorTentative.push("red")
+              colorTentative.splice(i+4,1,"red")
             }
 
           } 
           
         }
+        
       }
       
+    }
       if(this.j == 4){
         this.win = true;
       }
-    }
+    
     
     this.j=0
     this.pushTentativeInObject(colorTentative)

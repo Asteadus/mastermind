@@ -1,7 +1,7 @@
-<p *ngIf="win">
+<div *ngIf="win || !life">
+    <h3>RÉPONSE</h3>
     <ng-container *ngFor="let rep of reponse; let index = index" >
         <button type="button" class="square"><span class="dot" [ngStyle]="{'background-color':rep}" ></span></button>
-          
-    
+
     </ng-container>
-</p>
+</div>

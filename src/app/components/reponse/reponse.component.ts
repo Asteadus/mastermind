@@ -23,7 +23,9 @@ export class ReponseComponent implements OnInit {
 
   @Input("win")
   win : boolean = false;
-  
+  @Input("life")
+  life : boolean = true;
+
   constructor() { 
     
   }
