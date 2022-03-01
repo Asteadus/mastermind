@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { RawColor } from 'src/app/models/raw-color';
 
 @Component({
@@ -12,15 +13,28 @@ export class GameComponent implements OnInit {
   reponse : Array<string> = []
 
   listTentative : RawColor[]=[]
-  
-  j: number =0
 
-  win : boolean = false
+  nbTentativeDef : number = 0;
+
+  life : boolean = true;
+  
+  j: number =0;
+  
+  win : boolean = false;
+  start : boolean = false;
   constructor() { }
+  config = new FormGroup({
+    "nbTentative" : new FormControl(),
+ 
+  });
 
   ngOnInit(): void {
   }
-
+  onSubmit(){
+     
+    this.nbTentativeDef = this.config.value.nbTentative
+    this.start = true;
+  }
  
   verification( colorTentative : Array<string>){
     
@@ -29,21 +43,24 @@ export class GameComponent implements OnInit {
       if (this.reponse[i] === colorTentative[i]){
         this.j=this.j+1
         colorTentative.push("lightgreen")
+        
       }else{
         let accuNoColor =0
         for (let k = 0; k<4; k++){
           
-          if (this.reponse[k] === colorTentative[i]){
-            console.log("true")
+          if (this.reponse[k] === colorTentative[i] && colorTentative[k+4] == undefined){
+
+            console.log(console.log(colorTentative[5]))
             colorTentative.push("orange")
             
-            console.log(accuNoColor)
+            break;
           }
           else{
             accuNoColor++
             if(accuNoColor == 4){
               colorTentative.push("red")
             }
+
           } 
           
         }
@@ -70,7 +87,14 @@ export class GameComponent implements OnInit {
       bgColor4 : colorTentative[7],
     }
     this.listTentative.push(tentative)
+    this.nbVie()
 
     
   } 
+  
+  nbVie(){
+    if (this.listTentative.length == this.nbTentativeDef){
+      this.life = false;
+    }
+  }
 }

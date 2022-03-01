@@ -1,8 +1,22 @@
+
+<div *ngIf="!start">
+    <form [formGroup]="config" (ngSubmit)="onSubmit()">
+    <label for="nbTentative">nbTentative :</label>
+        <input type="number" id="nbTentative" formControlName="nbTentative">
+        <button type="submit">Commencer la partie</button>
+    </form>
+</div>
+
+<div *ngIf="start">
+   
 <app-reponse [listOfcolor] ="listOfColor" [win]="win" (reponse)=" reponse = $event"  ></app-reponse>
-<app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="verification($event)"></app-grid-color>
+<div *ngIf="life">
+    <app-grid-color [listOfcolor] ="listOfColor" (color-tentative)="verification($event)"></app-grid-color>
+</div>
 <app-grid [listTentative] ="listTentative"></app-grid>
 <p>{{reponse}}</p>
 
 
-
-<p *ngIf="win">Bravo</p>
+<p *ngIf="!life">Vous avez PERDU</p>
+<p *ngIf="win">Félicitations ! Vous avez gagné</p>
+</div>

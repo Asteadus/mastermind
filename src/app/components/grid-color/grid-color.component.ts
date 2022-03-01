@@ -28,9 +28,7 @@ export class GridColorComponent implements OnInit {
     "color4" : new FormControl (),
   });
 
-  listTentative : RawColor[]=[]
-  
-
+ 
   constructor(private cdref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
